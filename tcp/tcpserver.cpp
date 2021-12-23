@@ -1,4 +1,4 @@
-#include "tcpserver.h"
+﻿#include "tcpserver.h"
 #include <QMessageBox>
 #include <QList>
 
@@ -41,10 +41,10 @@ TcpServer::~TcpServer(){
 
 bool TcpServer::start(){
     server = new QTcpServer();
-    connect(server,SIGNAL(newConnection()),this,SLOT(server_new_connect()));//监听
+    connect(server,SIGNAL(newConnection()),this,SLOT(server_new_connect()));//Listening
     QHostAddress address = QHostAddress(ip);
     if(!server->listen(address, port)) {
-         QMessageBox::information(nullptr,tr("错误"),server->errorString());
+         QMessageBox::information(nullptr,tr("Error"),server->errorString());
          return false;
     }
     return true;

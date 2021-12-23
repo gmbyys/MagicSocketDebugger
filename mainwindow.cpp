@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
 #include <QMessageBox>
@@ -45,7 +45,7 @@ void MainWindow::on_createTcpClient_triggered()
 {
     hideAllConnectionWidget();
     QTreeWidgetItem *qTreeWidgetItem1=new QTreeWidgetItem();
-    qTreeWidgetItem1->setText(0,tr("新的客户端"));
+    qTreeWidgetItem1->setText(0,tr("New Client"));
     qTreeWidgetItemTcpClient->insertChild(0,qTreeWidgetItem1);
     ui->treeWidget->setCurrentItem(qTreeWidgetItem1);
     long key=reinterpret_cast<long>(qTreeWidgetItem1);
@@ -61,7 +61,7 @@ void MainWindow::on_createWsClient_triggered()
 {
     hideAllConnectionWidget();
     QTreeWidgetItem *qTreeWidgetItem1=new QTreeWidgetItem();
-    qTreeWidgetItem1->setText(0, tr("新的客户端"));
+    qTreeWidgetItem1->setText(0, tr("New Client"));
     qTreeWidgetItemWsClient->insertChild(0,qTreeWidgetItem1);
     ui->treeWidget->setCurrentItem(qTreeWidgetItem1);
     long key=reinterpret_cast<long>(qTreeWidgetItem1);
@@ -158,7 +158,7 @@ void MainWindow::connectionClicked(QTreeWidgetItem *qTreeWidgetItem, int){
         else if(qTreeWidgetItem->parent()==qTreeWidgetItemWsServer){ //服务端
             deleteButtonEnable=true;
         }
-        else if(qTreeWidgetItem->parent()->parent()==qTreeWidgetItemTcpServer){ //服务端的连接
+        else if(qTreeWidgetItem->parent()->parent()==qTreeWidgetItemTcpServer){ //服务端的Connect
             deleteButtonEnable=true;
             hideAllConnectionWidget();
             long serverKey=reinterpret_cast<long>(qTreeWidgetItem->parent());
@@ -166,7 +166,7 @@ void MainWindow::connectionClicked(QTreeWidgetItem *qTreeWidgetItem, int){
             TcpServer *server = tcpServerList.value(serverKey);
             server->serverConnectionList.value(serverConnectionKey)->qWidget->show();
         }
-        else if(qTreeWidgetItem->parent()->parent()==qTreeWidgetItemWsServer){ //服务端的连接
+        else if(qTreeWidgetItem->parent()->parent()==qTreeWidgetItemWsServer){ //服务端的Connect
             deleteButtonEnable=true;
             hideAllConnectionWidget();
             long serverKey=reinterpret_cast<long>(qTreeWidgetItem->parent());
@@ -308,7 +308,7 @@ void MainWindow::on_actionLanguageChinese_triggered()
     qSettings->setValue("language", "chs");
     uncheckedAllActionLanguage();
     ui->actionLanguageChinese->setChecked(true);
-    QMessageBox::information(this,tr("提示"),tr("重启应用后生效"));
+    QMessageBox::information(this,tr("Notice"),tr("Active after restart"));
 }
 
 void MainWindow::on_actionLanguageEnglish_triggered()
@@ -316,7 +316,7 @@ void MainWindow::on_actionLanguageEnglish_triggered()
     qSettings->setValue("language", "en");
     uncheckedAllActionLanguage();
     ui->actionLanguageEnglish->setChecked(true);
-    QMessageBox::information(this,tr("提示"),tr("重启应用后生效"));
+    QMessageBox::information(this,tr("Notice"),tr("Active after restart"));
 }
 
 void MainWindow::uncheckedAllActionLanguage() {

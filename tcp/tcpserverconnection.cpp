@@ -1,4 +1,5 @@
-#include "tcpserverconnection.h"
+﻿#include "tcpserverconnection.h"
+#include <QTime>
 
 TcpServerConnection::TcpServerConnection(QTreeWidgetItem *qTreeWidgetItemConnection,QGridLayout *qGridLayoutParent,QTcpSocket *qTcpSocket,QHash<long,TcpServerConnection*> *serverConnectionList,QString ipAddress,quint16 port):Connection(qGridLayoutParent, true)
 {
@@ -9,21 +10,21 @@ TcpServerConnection::TcpServerConnection(QTreeWidgetItem *qTreeWidgetItemConnect
     qVBoxLayoutLeft = new QVBoxLayout(qWidgetLeft);
     qVBoxLayoutLeft->setAlignment(Qt::AlignTop);
     qLabel1= new QLabel();
-    qLabel1->setText(tr("客户端地址："));
+    qLabel1->setText(tr("Client Address:"));
     qVBoxLayoutLeft->addWidget(qLabel1);
     clientAddressInput=new QLineEdit();
     clientAddressInput->setText(ipAddress);
     clientAddressInput->setEnabled(false);
     qVBoxLayoutLeft->addWidget(clientAddressInput);
     qLabel2 = new QLabel();
-    qLabel2->setText(tr("端口："));
+    qLabel2->setText(tr("Port:"));
     qVBoxLayoutLeft->addWidget(qLabel2);
     clientPortInput=new QLineEdit();
     clientPortInput->setText(QString::number(port));
     clientPortInput->setEnabled(false);
     qVBoxLayoutLeft->addWidget(clientPortInput);
     qLabel=new QLabel();
-    qLabel->setText(tr("编码:UTF-8"));
+    qLabel->setText(tr("Codec:UTF-8"));
     qVBoxLayoutLeft->addWidget(qLabel);
 
     connect(qTcpSocket, SIGNAL(readyRead()),this,SLOT(tcp_readyRead()));
@@ -96,7 +97,7 @@ void TcpServerConnection::on_sendButton_clicked()
 
 void TcpServerConnection::receiveEdit_append(QString qString){
     receiveInput->moveCursor(QTextCursor::End);
-    receiveInput->insertPlainText(qString);
+    receiveInput->insertPlainText(QTime::currentTime().toString("hh:mm:ss.zzz ") +qString+"\n");
 //    receiveInput->append(qString);
     QTextCursor cursor = receiveInput->textCursor();
     cursor.movePosition(QTextCursor::End);

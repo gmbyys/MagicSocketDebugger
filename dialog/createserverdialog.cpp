@@ -1,4 +1,4 @@
-#include "createserverdialog.h"
+﻿#include "createserverdialog.h"
 #include <QNetworkInterface>
 #include <QMessageBox>
 
@@ -12,7 +12,7 @@ CreateServerDialog::CreateServerDialog(QWidget *parent) : QDialog(parent)
     mainLayout->addLayout(ipLayout);
 
     ipLabel= new QLabel();
-    ipLabel->setText(tr("监听地址："));
+    ipLabel->setText(tr("Listen Address:"));
     ipLayout->addWidget(ipLabel);
 
     ipComboBox = new QComboBox(this);
@@ -36,7 +36,7 @@ CreateServerDialog::CreateServerDialog(QWidget *parent) : QDialog(parent)
     mainLayout->addLayout(portLayout);
 
     portLabel= new QLabel();
-    portLabel->setText(tr("监听端口："));
+    portLabel->setText(tr("Listening Port:"));
     portLayout->addWidget(portLabel);
 
     portInput=new QLineEdit();
@@ -46,11 +46,11 @@ CreateServerDialog::CreateServerDialog(QWidget *parent) : QDialog(parent)
     buttonLayout = new QHBoxLayout;
 
     confirmButton = new QPushButton();
-    confirmButton->setText(tr("确认"));
+    confirmButton->setText(tr("Comfirm"));
     buttonLayout->addWidget(confirmButton);
 
     cancelButton = new QPushButton();
-    cancelButton->setText(tr("取消"));
+    cancelButton->setText(tr("Cancel"));
     buttonLayout->addWidget(cancelButton);
 
     mainLayout->addLayout(buttonLayout);
@@ -113,14 +113,14 @@ void CreateServerDialog::on_confirmButton_clicked() {
     QString ip = ipComboBox->lineEdit()->text();
     if (!test.setAddress(ip))
     {
-        QMessageBox::information(this,tr("提示"),tr("请输入正确的ip地址"));
+        QMessageBox::information(this,tr("Notice"),tr("Please input correct IP"));
         return;
     }
     QString portString = portInput->text();
     bool ok;
     quint16 port = portString.toUShort(&ok);
     if (!ok) {
-        QMessageBox::information(this,tr("提示"),tr("请输入正确的端口号"));
+        QMessageBox::information(this,tr("Notice"),tr("Please input correct port"));
         return;
     }
     emit confirm(ip, port);

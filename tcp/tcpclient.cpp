@@ -1,4 +1,4 @@
-#include "tcpclient.h"
+﻿#include "tcpclient.h"
 #include <QTextCodec>
 #include <QMessageBox>
 #include <QTimer>
@@ -12,20 +12,20 @@ TcpClient::TcpClient(QTreeWidgetItem *qTreeWidgetItem,QGridLayout *qGridLayoutPa
     qVBoxLayoutLeft = new QVBoxLayout(qWidgetLeft);
     qVBoxLayoutLeft->setAlignment(Qt::AlignTop);
     qLabel1= new QLabel();
-    qLabel1->setText(tr("服务器地址："));
+    qLabel1->setText(tr("Server Address:"));
     qVBoxLayoutLeft->addWidget(qLabel1);
     serverAddressInput=new QLineEdit();
     qVBoxLayoutLeft->addWidget(serverAddressInput);
     qLabel2 = new QLabel();
-    qLabel2->setText(tr("端口："));
+    qLabel2->setText(tr("Port:"));
     qVBoxLayoutLeft->addWidget(qLabel2);
     serverPortInput=new QLineEdit();
     qVBoxLayoutLeft->addWidget(serverPortInput);
     connectButton=new QPushButton();
-    connectButton->setText(tr("连接"));
+    connectButton->setText(tr("Connect"));
     qVBoxLayoutLeft->addWidget(connectButton);
     qLabel=new QLabel();
-    qLabel->setText(tr("编码:UTF-8"));
+    qLabel->setText(tr("Codec:UTF-8"));
     qVBoxLayoutLeft->addWidget(qLabel);
 
     connect(connectButton, SIGNAL(clicked()), this, SLOT(on_connectButton_clicked()));
@@ -83,14 +83,14 @@ TcpClient::~TcpClient(){
 
 void TcpClient::on_connectButton_clicked()
 {
-    if(connectButton->text()==tr("连接")){
+    if(connectButton->text()==tr("Connect")){
         tcp_connect();
     }
-    else if(connectButton->text()==tr("断开连接"))
+    else if(connectButton->text()==tr("Disconnect"))
     {
         tcp_disconnect();
     }
-    else if(connectButton->text()==tr("正在连接..."))
+    else if(connectButton->text()==tr("Connecting..."))
     {
         qTcpSocket->abort();
     }
@@ -100,7 +100,7 @@ void TcpClient::tcp_connected()
 {
 //    qSettings->setValue("url",ui->urlLineEdit->text());
 //    qSettings->setValue("port",ui->portLineEdit->text());
-    connectButton->setText(tr("断开连接"));
+    connectButton->setText(tr("Disconnect"));
 //    connectButton->setEnabled(true);
     sendButton->setEnabled(true);
     pingCheckBox->setEnabled(true);
@@ -116,7 +116,7 @@ void TcpClient::tcp_disconnected()
 
 void TcpClient::click_connectButton()
 {
-    if(connectButton->text()==tr("连接")){
+    if(connectButton->text()==tr("Connect")){
         tcp_connect();
     }
 }
@@ -145,7 +145,7 @@ void TcpClient::tcp_stateChanged(QAbstractSocket::SocketState state)
 
         serverAddressInput->setEnabled(true);
         serverPortInput->setEnabled(true);
-        connectButton->setText(tr("连接"));
+        connectButton->setText(tr("Connect"));
         sendButton->setEnabled(false);
         pingCheckBox->setEnabled(false);
         pingCheckBox->setChecked(false);
@@ -153,14 +153,14 @@ void TcpClient::tcp_stateChanged(QAbstractSocket::SocketState state)
 }
 
 void TcpClient::tcp_connect()
-{    
+{
     QString url=serverAddressInput->text();
     QString portString=serverPortInput->text();
     quint16 port=quint16(portString.toUInt());
 
     qTreeWidgetItem->setText(0,url+":"+portString);
 
-    connectButton->setText(tr("正在连接..."));
+    connectButton->setText(tr("Connecting..."));
 
     qTcpSocket = new QTcpSocket();
 
@@ -187,7 +187,7 @@ void TcpClient::on_sendButton_clicked()
 
 void TcpClient::receiveEdit_append(QString qString){
     receiveInput->moveCursor(QTextCursor::End);
-    receiveInput->insertPlainText(qString);
+    receiveInput->insertPlainText(QTime::currentTime().toString("hh:mm:ss.zzz ") +qString+"\n");
 //    receiveInput->append(qString);
     QTextCursor cursor = receiveInput->textCursor();
     cursor.movePosition(QTextCursor::End);

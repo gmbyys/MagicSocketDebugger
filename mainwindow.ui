@@ -100,7 +100,7 @@
          </property>
          <column>
           <property name="text">
-           <string>连接</string>
+           <string>Connect</string>
           </property>
          </column>
          <item>
@@ -202,7 +202,7 @@
   </widget>
   <action name="createTcpClient">
    <property name="text">
-    <string>创建Tcp连接</string>
+    <string>创建TcpConnect</string>
    </property>
   </action>
   <action name="createTcpServer">
@@ -220,7 +220,7 @@
   </action>
   <action name="createWsClient">
    <property name="text">
-    <string>创建WebSocket连接</string>
+    <string>创建WebSocketConnect</string>
    </property>
   </action>
   <action name="createWsServer">

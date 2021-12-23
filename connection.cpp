@@ -1,4 +1,4 @@
-#include "connection.h"
+﻿#include "connection.h"
 
 Connection::~Connection(){
     if(receiveInput!=nullptr){
@@ -97,10 +97,10 @@ Connection::Connection(QGridLayout *qGridLayoutParent, bool sendDataBtnEnable):Q
     qGridLayoutRight  -> addWidget(qWidget1,0,0,1,1);
     qLabel3=new QLabel(qWidget1);
     qLabel3  -> setGeometry(0,2,50,36);
-    qLabel3  -> setText(tr("发送"));
+    qLabel3  -> setText(tr("Send"));
     sendButton=new QPushButton(qWidget1);
     sendButton  -> setGeometry(60,2,70,36);
-    sendButton  -> setText(tr("发送"));
+    sendButton  -> setText(tr("Send"));
     if(!sendDataBtnEnable) {
         sendButton->setEnabled(false);
     }
@@ -120,12 +120,12 @@ Connection::Connection(QGridLayout *qGridLayoutParent, bool sendDataBtnEnable):Q
     pingCheckBox=new QCheckBox(qWidget2);
     pingCheckBox->setEnabled(false);
     pingCheckBox->setGeometry(0,2,110,36);
-    pingCheckBox->setText(tr("心跳包"));
+    pingCheckBox->setText(tr("Heartbeat Package"));
     pingIntervalInput=new QLineEdit(qWidget2);
     pingIntervalInput->setGeometry(120,9,50,22);
     qLabel4=new QLabel(qWidget2);
     qLabel4->setGeometry(175,2,56,36);
-    qLabel4->setText(tr("秒"));
+    qLabel4->setText(tr("Sec"));
 
     pingDataInput=new QTextEdit();
     pingDataInput->setAcceptRichText(false);
@@ -140,14 +140,14 @@ Connection::Connection(QGridLayout *qGridLayoutParent, bool sendDataBtnEnable):Q
     qGridLayoutRight->addWidget(qWidget3,4,0,1,1);
     qLabel5=new QLabel(qWidget3);
     qLabel5->setGeometry(0,2,50,36);
-    qLabel5->setText(tr("接收"));
+    qLabel5->setText(tr("Recieved"));
     clearReceiveButton=new QPushButton(qWidget3);
     clearReceiveButton->setGeometry(60,2,70,36);
-    clearReceiveButton->setText(tr("清空"));
+    clearReceiveButton->setText(tr("Clear"));
 
     receiveInput=new QTextEdit();
     receiveInput->setReadOnly(true);
     receiveInput->setWordWrapMode(QTextOption::WrapAnywhere);
-    qGridLayoutRight->addWidget(receiveInput,5,0,1,1);        
+    qGridLayoutRight->addWidget(receiveInput,5,0,1,1);
 
 }

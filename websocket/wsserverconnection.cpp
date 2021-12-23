@@ -1,4 +1,4 @@
-#include "websocket/wsserverconnection.h"
+﻿#include "websocket/wsserverconnection.h"
 
 WsServerConnection::WsServerConnection(QTreeWidgetItem *qTreeWidgetItemConnection,QGridLayout *qGridLayoutParent,QWebSocket *qWebSocket,QHash<long,WsServerConnection*> *serverConnectionList,QString ipAddress,quint16 port):Connection(qGridLayoutParent, true)
 {
@@ -9,14 +9,14 @@ WsServerConnection::WsServerConnection(QTreeWidgetItem *qTreeWidgetItemConnectio
     qVBoxLayoutLeft = new QVBoxLayout(qWidgetLeft);
     qVBoxLayoutLeft->setAlignment(Qt::AlignTop);
     qLabel1= new QLabel();
-    qLabel1->setText(tr("客户端地址："));
+    qLabel1->setText(tr("Client Address:"));
     qVBoxLayoutLeft->addWidget(qLabel1);
     clientAddressInput=new QLineEdit();
     clientAddressInput->setText(ipAddress);
     clientAddressInput->setEnabled(false);
     qVBoxLayoutLeft->addWidget(clientAddressInput);
     qLabel2 = new QLabel();
-    qLabel2->setText(tr("端口："));
+    qLabel2->setText(tr("Port:"));
     qVBoxLayoutLeft->addWidget(qLabel2);
     clientPortInput=new QLineEdit();
     clientPortInput->setText(QString::number(port));

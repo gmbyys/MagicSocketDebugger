@@ -42,7 +42,7 @@ class MainWindow : public QMainWindow
         //删除
         void on_deleteConnection_triggered();
 
-        //点击连接
+        //点击Connect
         void connectionClicked(QTreeWidgetItem* ,int);
 
         //切换语言
